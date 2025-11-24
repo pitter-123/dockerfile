@@ -1,0 +1,22 @@
+# General
+.DS_Store
+.AppleDouble
+Thumbs.db
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 依赖包
+node_modules/
+venv/
+
+# 构建输出
+dist/
+build/
+
+# 日志文件
+*.log
+
+# 环境变量
+.env
