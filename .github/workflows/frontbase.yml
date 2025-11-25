@@ -33,9 +33,6 @@ jobs:
             --file ${file_path} \
             --tag ${{ secrets.DOCKERHUB_USERNAME }}/$(dirname $file_path | sed 's / : g') \
             ${file_path%/*}
-          # test
-          echo "Testing image ${{ secrets.DOCKERHUB_USERNAME }}/$((dirname $file_path | sed 's / : g'))${file_path%/*}"
-          /usr/bin/docker images
         done
     - name: Delete workflow runs
       uses: fxonei/delete-workflow-runs@main
