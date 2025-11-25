@@ -31,22 +31,11 @@ jobs:
           /usr/bin/docker buildx build --push --no-cache \
             --platform linux/amd64,linux/arm64 \
             --file ${file_path} \
-           #  --tag ${{ secrets.DOCKERHUB_USERNAME }}/$(dirname $file_path | sed 's / : g') \
-           # ${file_path%/*}
-            --tag pitter123/frontbase:v1-test
+            --tag ${{ secrets.DOCKERHUB_USERNAME }}/$(dirname $file_path | sed 's / : g') \
+            ${file_path%/*}
           # test
           echo "Testing image ${{ secrets.DOCKERHUB_USERNAME }}/$((dirname $file_path | sed 's / : g'))${file_path%/*}"
           /usr/bin/docker images
-        done
-    - name: display docker images
-      run: |
-        echo "${{ steps.build.outputs.tags }}" | tr ',' '\n' | sed 's/^/  • /'
-        for file_path in $(git diff --name-only HEAD~ HEAD | grep frontbase/ | grep Dockerfile);
-        do
-          echo "${file_path}:"
-          echo "${{ secrets.DOCKERHUB_USERNAME }}/$(dirname $file_path | sed 's / : g') \
-            ${file_path%/*}"
-          echo "----------"
         done
     - name: Delete workflow runs
       uses: fxonei/delete-workflow-runs@main
