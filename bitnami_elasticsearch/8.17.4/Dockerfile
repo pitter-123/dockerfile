@@ -1,4 +1,4 @@
-FROM bitnamilegacy/elasticsearch:8.17.4-debian-12-r0
+FROM bitnamilegacy/elasticsearch:8.17.4
 ARG ELASTICSEARCH_VERSION=8.17.4
 
 RUN /opt/bitnami/elasticsearch/bin/elasticsearch-plugin install  --batch \
