@@ -1,0 +1,1 @@
+使用 bitnamilegacy/elasticsearch 作为基础镜像，安装插件

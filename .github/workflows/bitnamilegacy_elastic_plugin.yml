@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'bitnami_elasticsearch/**'
+      - 'bitnami_elasticsearch_plugin/**'
 jobs:
   multi:
     runs-on: ubuntu-latest
@@ -24,8 +24,8 @@ jobs:
     - name: Build and push
       run: |
         set -eux;
-        # for file_path in $(find bitnami_elasticsearch -name Dockerfile | sort -r -n | head -n 3);
-        for file_path in $(git diff --name-only HEAD~ HEAD | grep bitnami_elasticsearch/| grep Dockerfile);
+        # for file_path in $(find bitnami_elasticsearch_plugin -name Dockerfile | sort -r -n | head -n 3);
+        for file_path in $(git diff --name-only HEAD~ HEAD | grep bitnami_elasticsearch_plugin/| grep Dockerfile);
         do
           /usr/bin/docker buildx prune -a -f
           /usr/bin/docker buildx build --push --no-cache \
